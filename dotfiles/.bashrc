@@ -48,20 +48,32 @@ white='\[\033[1;37m\]'
 grey='\[\033[0;37m\]'
 reset='\[\033[0m\]'
 
-# borrowed successful command prompt code from https://coderwall.com/p/d2vlqq/show-last-command-s-status-in-bash-prompt
-function BashPrompt() {
-    local last_status=$?
-
+# tiny git status for use in BashPrompt
+function GitStatus() {
     local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if git status > /dev/null 2>&1; then
       if ! git diff-index --quiet HEAD > /dev/null 2>&1; then
-        local git_changed_count=" $(git diff --numstat | wc -l | tr -d ' ')"
+        local staged="$(git diff --cached --numstat | wc -l | tr -d ' ')"
+        if [[ $staged != 0 ]]; then
+          git_staged_count=" $staged"
+        fi
+
+        local modified="$(git diff --numstat | wc -l | tr -d ' ')"
+        if [[ $modified != 0 ]]; then
+          git_modified_count=" $modified"
+        fi
       fi
-      if ! test -z "$(git ls-files --exclude-standard --others)"; then
-        local git_untracked=" u"
+      local untracked="$(git ls-files --exclude-standard --others | wc -l | tr -d ' ')"
+      if [[ $untracked != 0 ]]; then
+        git_untracked_count=" $untracked"
       fi
-      local git_section="${yellow}[${grey}${current_branch}${red}${git_changed_count}${green}${git_untracked}${yellow}]${reset} "
+      echo "[${grey}${current_branch}${green}${git_staged_count}${red}${git_modified_count}${yellow}${git_untracked_count}${reset}] "
     fi
+}
+
+# borrowed successful command prompt code from https://coderwall.com/p/d2vlqq/show-last-command-s-status-in-bash-prompt
+function BashPrompt() {
+    local last_status=$?
     local time=$(date +"%T")
 
     if [[ "$last_status" == "0" ]]; then
@@ -70,7 +82,9 @@ function BashPrompt() {
       local time_color=$red
     fi
 
-    echo "${time_color}[\t]${reset} ${git_section}\u@\h ${cyan}${PWD/$HOME/~}${reset} "
+    local git_section="$(GitStatus)"
+
+    echo "${time_color}\t${reset} ${git_section}\u@\h ${cyan}${PWD/$HOME/~}${reset} "
 }
 
 # the hook which updates the prompt whenever we run a command
