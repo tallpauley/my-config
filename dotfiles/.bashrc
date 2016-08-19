@@ -38,6 +38,11 @@ alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 alias gd="git diff"
 alias gds="git diff --staged"
 
+# git completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
 # color codes (for prompt)
 black='\[\033[0;30m\]'
 red='\[\033[0;31m\]'

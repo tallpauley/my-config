@@ -10,3 +10,6 @@ rm -rf "$SUBLIME_USER_DIR"
 
 # make folder symlink (sublime directory points here)
 ln -s $PWD "$SUBLIME_USER_DIR"
+
+# make subl available on path
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
