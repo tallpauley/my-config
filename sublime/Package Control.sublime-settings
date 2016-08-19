@@ -1,0 +1,39 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AceJump",
+		"Anaconda",
+		"Browser Refresh",
+		"Color Highlighter",
+		"CSS Format",
+		"DocBlockr_Python",
+		"Emmet",
+		"Git",
+		"GitGutter",
+		"Glue",
+		"Markdown Preview",
+		"Origami",
+		"Package Control",
+		"Pretty JSON",
+		"Python Breakpoints",
+		"Python PEP8 Autoformat",
+		"Schemr",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-html-tidy",
+		"SublimeREPL",
+		"Terminal",
+		"Theme - Flatland",
+		"Theme - Soda",
+		"Themr",
+		"View In Browser",
+		"Vintage-Origami",
+		"W3CValidators",
+		"Wrap Plus"
+	]
+}
