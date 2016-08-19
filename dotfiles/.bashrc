@@ -5,6 +5,9 @@ alias less='less -r'
 alias tree='tree -C'
 alias grep="grep --color=auto"
 
+# assorted aliases
+alias erc="vi ~/.bashrc && . ~/.bashrc"
+
 # ls aliases
 alias sortbysize="ls -s | sort -n"
 
