@@ -54,7 +54,7 @@ function BashPrompt() {
 
     local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if git status > /dev/null 2>&1; then
-      if git diff-index --quiet HEAD > /dev/null 2>&1; then
+      if ! git diff-index --quiet HEAD > /dev/null 2>&1; then
         local git_changed_count=" $(git diff --numstat | wc -l | tr -d ' ')"
       fi
       if ! test -z "$(git ls-files --exclude-standard --others)"; then
