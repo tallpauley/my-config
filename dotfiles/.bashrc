@@ -7,6 +7,7 @@ alias grep="grep --color=auto"
 
 # assorted aliases
 alias erc="vi ~/.bashrc && . ~/.bashrc"
+alias h="cd ~"
 
 # ls aliases
 alias sortbysize="ls -s | sort -n"
