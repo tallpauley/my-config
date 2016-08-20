@@ -37,10 +37,17 @@ alias ga="git add"
 alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias gd="git diff"
 alias gds="git diff --staged"
+alias gsu="git status -uno"
 
 # git completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
+fi
+
+# google cloud sdk completion
+gc_autocomplete_path='/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+if [ -f $gc_autocomplete_path ]; then
+. $gc_autocomplete_path
 fi
 
 # color codes (for prompt)
