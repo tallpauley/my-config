@@ -39,6 +39,9 @@ alias gd="git diff"
 alias gds="git diff --staged"
 alias gsu="git status -uno"
 
+# google cloud aliases
+alias gcl="gcloud"
+
 # git completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
