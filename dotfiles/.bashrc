@@ -29,7 +29,8 @@ alias tma='tmux attach -t'
 alias g="googler -n 3"
 
 # git
-alias gc="git commit -m "
+alias gc="git commit -m"
+alias gch="git checkout"
 alias gp="git push"
 alias gl="git pull --rebase"
 alias gs="git status -s"
@@ -43,14 +44,9 @@ alias gsu="git status -uno"
 alias gcl="gcloud"
 
 # git completion
+# works w/ `brew install git-completion`
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
-fi
-
-# google cloud sdk completion
-gc_autocomplete_path='/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
-if [ -f $gc_autocomplete_path ]; then
-. $gc_autocomplete_path
 fi
 
 # color codes (for prompt)
