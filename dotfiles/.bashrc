@@ -8,6 +8,7 @@ alias grep="grep --color=auto"
 # assorted aliases
 alias erc="vi ~/.bashrc && . ~/.bashrc"
 alias h="cd ~"
+alias sb="subl"
 
 # ls aliases
 alias sortbysize="ls -s | sort -n"
@@ -28,8 +29,15 @@ alias tma='tmux attach -t'
 # googler
 alias g="googler -n 3"
 
-# git
+# git alias helpers
+function add_commit() {
+  git add $1;
+  git commit -m "$2";
+}
+
+# git aliases
 alias gc="git commit -m"
+alias gac="add_commit"
 alias gch="git checkout"
 alias gp="git push"
 alias gl="git pull --rebase"
@@ -39,6 +47,7 @@ alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gsu="git status -uno"
+alias gb="git blame"
 
 # google cloud aliases
 alias gcl="gcloud"
