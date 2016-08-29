@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# history
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL="ignoreboth"
+
 # colors
 alias less='less -r'
 alias tree='tree -C'
