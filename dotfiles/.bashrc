@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # history
 export HISTSIZE=10000
 export HISTFILESIZE=10000
@@ -40,6 +38,15 @@ function add_commit() {
   git commit -m "$2";
 }
 
+# sublime aliases
+alias s="subl"
+
+# docker aliases
+alias dp="docker ps"
+alias dpa="docker ps -a"
+alias dr="docker rm"
+alias drf="docker rm -f"
+
 # git aliases
 alias gc="git commit -m"
 alias gac="add_commit"
@@ -54,13 +61,21 @@ alias gds="git diff --staged"
 alias gsu="git status -uno"
 alias gb="git blame"
 
-# google cloud aliases
+# google cloud & kubernetes aliases
 alias gcl="gcloud"
+alias kl="kubectl"
 
-# git completion
+# include brew completion files
 # works w/ `brew install git-completion`
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
+fi
+
+# all other completion files
+if [ -d ~/.bash_completion.d ]; then
+    for i in ~/.bash_completion.d/*; do
+      . $i
+    done
 fi
 
 # color codes (for prompt)
