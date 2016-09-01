@@ -15,7 +15,8 @@ function d() {
   # change dir if param isn't number
   re='^[0-9]+$'
   if ! [[ $param =~ $re ]] ; then
-    pushd $param > /dev/null
+    cd $param
+    pushd $PWD > /dev/null
     ls
     return
   fi
@@ -37,6 +38,7 @@ function d() {
   # not sure why I need this still, tilde wasn't expanding as it was
   eval dir=$dir
   cd $dir
+  ls
 }
 
 # colors
@@ -58,6 +60,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias ls='ls -GF'
 fi
 
+alias l='ls'
 alias ll='ls -l'
 alias la='ls -al'
 
