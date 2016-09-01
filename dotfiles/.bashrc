@@ -3,6 +3,42 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTCONTROL="ignoreboth"
 
+# fancy d function for changing dirs
+function d() { 
+  # show stack if no param
+  local param=$1
+  if [ -z "$param" ]; then
+    dirs -v | sed "1d"
+    return
+  fi
+ 
+  # change dir if param isn't number
+  re='^[0-9]+$'
+  if ! [[ $param =~ $re ]] ; then
+    pushd $param > /dev/null
+    ls
+    return
+  fi
+
+  # if $param is number switch to dir on stack
+  # we are looking to see if $PWD is any but last entry in stack
+  # if it isn't there, push it so we have it
+  # dirs -v | sed '1d' 
+  # if [[ $? != 0 ]]; then
+  # dirs -v | sed '1d' | grep "${PWD/$HOME/~}" -q
+  #   pushd $PWD
+  #   # increment line if we push onto stack
+  #   line=$((param+1))
+  # fi
+
+  # switch to dir indicated by number
+  local line=$((param+1))
+  dir=$(dirs -v | sed "${line}q;d" | awk '{print $2}')
+  # not sure why I need this still, tilde wasn't expanding as it was
+  eval dir=$dir
+  cd $dir
+}
+
 # colors
 alias less='less -r'
 alias tree='tree -C'
@@ -44,7 +80,12 @@ alias s="subl"
 # docker aliases
 alias dp="docker ps"
 alias dpa="docker ps -a"
+alias dpe="docker ps --filter status=exited"
 alias dr="docker rm"
+alias drf="docker rm -f"
+drl() { docker rm $(docker ps -ql); } 
+drle() { docker rm $(docker ps -ql --filter status=exited); } 
+drfl() { docker rm -f $(docker ps -ql); } 
 alias drf="docker rm -f"
 
 # git aliases
