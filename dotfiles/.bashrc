@@ -3,39 +3,43 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTCONTROL="ignoreboth"
 
-# fancy d function for changing dirs
-function d() { 
-  # show stack if no param
-  local param=$1
-  if [ -z "$param" ]; then
-    dirs -v | sed "1d"
+# file to store paths in for switcher
+dirsfile=~/.dirs
+
+# fancy directory switcher
+d() { 
+  # displays numbered paths in $dirsfile if no params
+  if [ -z "$1" ]; then
+    if [ -f $dirsfile ]; then
+      nl -b a $dirsfile | tail -r
+      return
+    fi
+  fi
+
+  # clear all dirs if -c
+  if [[ "$1" == '-c' ]]; then
+    > $dirsfile
+    return
+  fi
+
+  # remove dir on line if -r
+  if [[ "$1" == '-r' ]]; then
+    sed -i '.bak' "${2}d" $dirsfile
     return
   fi
  
-  # change dir if param isn't number
+  # switches to a directory and adds to $dirsfile if param is path
   re='^[0-9]+$'
-  if ! [[ $param =~ $re ]] ; then
-    cd $param
-    pushd $PWD > /dev/null
+  if ! [[ $1 =~ $re ]] ; then
+    cd $1 || return
+    echo "${PWD/$HOME/~}" >> $dirsfile
     ls
     return
   fi
 
-  # if $param is number switch to dir on stack
-  # we are looking to see if $PWD is any but last entry in stack
-  # if it isn't there, push it so we have it
-  # dirs -v | sed '1d' 
-  # if [[ $? != 0 ]]; then
-  # dirs -v | sed '1d' | grep "${PWD/$HOME/~}" -q
-  #   pushd $PWD
-  #   # increment line if we push onto stack
-  #   line=$((param+1))
-  # fi
-
-  # switch to dir indicated by number
-  local line=$((param+1))
-  dir=$(dirs -v | sed "${line}q;d" | awk '{print $2}')
-  # not sure why I need this still, tilde wasn't expanding as it was
+  # switches to path with displayed number if param is number
+  line=$1
+  dir=$(sed "${line}q;d" $dirsfile)
   eval dir=$dir
   cd $dir
   ls
@@ -48,8 +52,8 @@ alias grep="grep --color=auto"
 
 # assorted aliases
 alias erc="vi ~/.bashrc && . ~/.bashrc"
-alias h="cd ~"
 alias sb="subl"
+alias h="history | grep"
 
 # ls aliases
 alias sortbysize="ls -s | sort -n"
@@ -107,7 +111,9 @@ alias gb="git blame"
 
 # google cloud & kubernetes aliases
 alias gcl="gcloud"
-alias kl="kubectl"
+alias k="kubectl"
+alias kg="kubectl get"
+alias kd="kubectl describe"
 
 # include brew completion files
 # works w/ `brew install git-completion`
