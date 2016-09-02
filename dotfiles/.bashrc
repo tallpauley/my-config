@@ -7,42 +7,42 @@ export HISTCONTROL="ignoreboth"
 dirsfile=~/.dirs
 
 # fancy directory switcher
-d() { 
-  # displays numbered paths in $dirsfile if no params
-  if [ -z "$1" ]; then
-    if [ -f $dirsfile ]; then
-      nl -b a $dirsfile | tail -r
-      return
+d() {
+    # displays numbered paths in $dirsfile if no params
+    if [ -z "$1" ]; then
+        if [ -f $dirsfile ]; then
+            nl -b a $dirsfile | tail -r
+            return
+        fi
     fi
-  fi
 
-  # clear all dirs if -c
-  if [[ "$1" == '-c' ]]; then
-    > $dirsfile
-    return
-  fi
+    # clear all dirs if -c
+    if [[ "$1" == '-c' ]]; then
+        > $dirsfile
+        return
+    fi
 
-  # remove dir on line if -r
-  if [[ "$1" == '-r' ]]; then
-    sed -i '.bak' "${2}d" $dirsfile
-    return
-  fi
- 
-  # switches to a directory and adds to $dirsfile if param is path
-  re='^[0-9]+$'
-  if ! [[ $1 =~ $re ]] ; then
-    cd $1 || return
-    echo "${PWD/$HOME/~}" >> $dirsfile
+    # remove dir on line if -r
+    if [[ "$1" == '-r' ]]; then
+        sed -i '.bak' "${2}d" $dirsfile
+        return
+    fi
+
+    # switches to a directory and adds to $dirsfile if param is path
+    re='^[0-9]+$'
+    if ! [[ $1 =~ $re ]] ; then
+        cd $1 || return
+        echo "${PWD/$HOME/~}" >> $dirsfile
+        ls
+        return
+    fi
+
+    # switches to path with displayed number if param is number
+    line=$1
+    dir=$(sed "${line}q;d" $dirsfile)
+    eval dir=$dir
+    cd $dir
     ls
-    return
-  fi
-
-  # switches to path with displayed number if param is number
-  line=$1
-  dir=$(sed "${line}q;d" $dirsfile)
-  eval dir=$dir
-  cd $dir
-  ls
 }
 
 # colors
@@ -59,9 +59,9 @@ alias h="history | grep"
 alias sortbysize="ls -s | sort -n"
 
 if [[ "$OSTYPE" == "linux"* ]]; then
-  alias ls='ls --color=auto'
+    alias ls='ls --color=auto'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  alias ls='ls -GF'
+    alias ls='ls -GF'
 fi
 
 alias l='ls'
@@ -77,8 +77,8 @@ alias g="googler -n 3"
 
 # git alias helpers
 function add_commit() {
-  git add $1;
-  git commit -m "$2";
+    git add $1;
+    git commit -m "$2";
 }
 
 # sublime aliases
@@ -88,11 +88,10 @@ alias s="subl"
 alias dp="docker ps"
 alias dpa="docker ps -a"
 alias dpe="docker ps --filter status=exited"
-alias dr="docker rm"
 alias drf="docker rm -f"
-drl() { docker rm $(docker ps -ql); } 
-drle() { docker rm $(docker ps -ql --filter status=exited); } 
-drfl() { docker rm -f $(docker ps -ql); } 
+drl() { docker rm $(docker ps -ql); }
+drle() { docker rm $(docker ps -ql --filter status=exited); }
+drfl() { docker rm -f $(docker ps -ql); }
 alias drf="docker rm -f"
 
 # git aliases
@@ -118,14 +117,14 @@ alias kd="kubectl describe"
 # include brew completion files
 # works w/ `brew install git-completion`
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+        . $(brew --prefix)/etc/bash_completion
 fi
 
 # all other completion files
 if [ -d ~/.bash_completion.d ]; then
-    for i in ~/.bash_completion.d/*; do
-      . $i
-    done
+        for i in ~/.bash_completion.d/*; do
+            . $i
+        done
 fi
 
 # color codes (for prompt)
@@ -142,22 +141,22 @@ reset='\[\033[0m\]'
 function GitStatus() {
     local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if git status > /dev/null 2>&1; then
-      if ! git diff-index --quiet HEAD > /dev/null 2>&1; then
-        local staged="$(git diff --cached --numstat | wc -l | tr -d ' ')"
-        if [[ $staged != 0 ]]; then
-          git_staged_count=" $staged"
-        fi
+        if ! git diff-index --quiet HEAD > /dev/null 2>&1; then
+            local staged="$(git diff --cached --numstat | wc -l | tr -d ' ')"
+            if [[ $staged != 0 ]]; then
+                git_staged_count=" $staged"
+            fi
 
-        local modified="$(git diff --numstat | wc -l | tr -d ' ')"
-        if [[ $modified != 0 ]]; then
-          git_modified_count=" $modified"
+            local modified="$(git diff --numstat | wc -l | tr -d ' ')"
+            if [[ $modified != 0 ]]; then
+                git_modified_count=" $modified"
+            fi
         fi
-      fi
-      local untracked="$(git ls-files --exclude-standard --others | wc -l | tr -d ' ')"
-      if [[ $untracked != 0 ]]; then
-        git_untracked_count=" $untracked"
-      fi
-      echo "[${grey}${current_branch}${green}${git_staged_count}${red}${git_modified_count}${yellow}${git_untracked_count}${reset}] "
+        local untracked="$(git ls-files --exclude-standard --others | wc -l | tr -d ' ')"
+        if [[ $untracked != 0 ]]; then
+            git_untracked_count=" $untracked"
+        fi
+        echo "[${grey}${current_branch}${green}${git_staged_count}${red}${git_modified_count}${yellow}${git_untracked_count}${reset}] "
     fi
 }
 
@@ -167,9 +166,9 @@ function BashPrompt() {
     local time=$(date +"%T")
 
     if [[ "$last_status" == "0" ]]; then
-      local time_color=$green
+        local time_color=$green
     else
-      local time_color=$red
+        local time_color=$red
     fi
 
     local git_section="$(GitStatus)"
