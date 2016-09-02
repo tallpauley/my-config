@@ -38,8 +38,7 @@ d() {
     fi
 
     # switches to path with displayed number if param is number
-    line=$1
-    dir=$(sed "${line}q;d" $dirsfile)
+    dir=$(sed "${1}q;d" $dirsfile)
     eval dir=$dir
     cd $dir
     ls
