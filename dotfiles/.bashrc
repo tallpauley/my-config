@@ -120,7 +120,27 @@ alias gb="git blame"
 
 # google cloud & kubernetes aliases
 alias gcl="gcloud"
-alias k="kubectl"
+
+# helper function, if number gets pod id from line number of kubctl get pods
+# or just returns input if already a pod id
+get_pod() {
+    re='^[0-9]+$'
+    if [[ $1 =~ $re ]] ; then
+    	kubectl get pods | sed '1d' | sed -n "${1}p" | awk '{print $1}'
+    	return
+    fi
+    echo $1
+}
+alias kk="kubectl get pods | sed '1d' | nl -w 1 "
+
+kl() { kubectl logs $(get_pod $1); }
+klp() { kubectl logs -p $(get_pod $1); }
+kdp() { kubectl describe pod $(get_pod $1); }
+kssh() { kubectl exec -it $(get_pod $1) bash; }
+
+alias kwp="watch kubectl get pods"
+kwd() { watch kubectl describe pod $(get_pod $1); }
+
 alias kg="kubectl get"
 alias kd="kubectl describe"
 
