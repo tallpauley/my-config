@@ -28,6 +28,13 @@ d() {
         return
     fi
 
+    # go to root of git repo
+    if [[ "$1" == '-g' ]]; then
+    	cd $(git rev-parse --show-toplevel)
+        ls
+    	return 
+    fi
+
     # switches to a directory and adds to $dirsfile if param is path
     re='^[0-9]+$'
     if ! [[ $1 =~ $re ]] ; then
@@ -43,6 +50,9 @@ d() {
     cd $dir
     ls
 }
+
+# shortcut for returning to git root
+alias dg="d -g"
 
 # colors
 alias less='less -r'
