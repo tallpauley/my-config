@@ -106,6 +106,7 @@ alias drf="docker rm -f"
 # git aliases
 alias gc="git commit -m"
 alias gac="add_commit"
+alias gcam="git commit -am"
 alias gch="git checkout"
 alias gp="git push"
 alias gl="git pull --rebase"
