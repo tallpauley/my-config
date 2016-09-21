@@ -131,15 +131,16 @@ get_pod() {
     fi
     echo $1
 }
-alias kk="kubectl get pods | sed '1d' | nl -w 1 "
+alias kp="kubectl get pods | sed '1d' | nl -w 2 "
 
 kl() { kubectl logs $(get_pod $1); }
 klp() { kubectl logs -p $(get_pod $1); }
+klf() { kubectl logs -f $(get_pod $1); }
 kdp() { kubectl describe pod $(get_pod $1); }
 kssh() { kubectl exec -it $(get_pod $1) bash; }
 
-alias kwp="watch kubectl get pods"
-kwd() { watch kubectl describe pod $(get_pod $1); }
+alias kwp="watch -d kubectl get pods"
+kwd() { watch -d kubectl describe pod $(get_pod $1); }
 
 alias kg="kubectl get"
 alias kd="kubectl describe"
