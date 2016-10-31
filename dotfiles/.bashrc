@@ -1,3 +1,7 @@
+# general
+# turn off ctrl-d sending EOF (thus quitting terminal)
+set -o ignoreeof
+
 # history
 export HISTSIZE=10000
 export HISTFILESIZE=10000
@@ -5,6 +9,11 @@ export HISTCONTROL="ignoreboth"
 
 # file to store paths in for switcher
 dirsfile=~/.dirs
+
+# work-specific rc file
+if [ -f ~/.bashrc_private ]; then
+    source ~/.bashrc_private
+fi
 
 # fancy directory switcher
 d() {
@@ -94,6 +103,7 @@ function add_commit() {
 alias s="subl"
 
 # docker aliases
+alias dlc="docker ps -lq"
 alias dp="docker ps"
 alias dpa="docker ps -a"
 alias dpe="docker ps --filter status=exited"
@@ -120,6 +130,10 @@ alias gb="git blame"
 
 # google cloud & kubernetes aliases
 alias gcl="gcloud"
+alias gcla="gcloud config configurations activate"
+alias gclc="gcloud compute"
+alias gclssh="gcloud compute ssh"
+alias gcli="gcloud compute instances list"
 
 # helper function, if number gets pod id from line number of kubctl get pods
 # or just returns input if already a pod id
@@ -133,6 +147,7 @@ get_pod() {
 }
 alias kp="kubectl get pods | sed '1d' | nl -w 2 "
 
+alias kubectl_sys="kubectl --namespace='kube-system'"
 kl() { kubectl logs $(get_pod $1); }
 klp() { kubectl logs -p $(get_pod $1); }
 klf() { kubectl logs -f $(get_pod $1); }
@@ -159,14 +174,25 @@ if [ -d ~/.bash_completion.d ]; then
 fi
 
 # color codes (for prompt)
-black='\[\033[0;30m\]'
-red='\[\033[0;31m\]'
-green='\[\033[0;32m\]'
-yellow='\[\033[0;33m\]'
-cyan='\[\033[0;36m\]'
-white='\[\033[1;37m\]'
-grey='\[\033[0;37m\]'
-reset='\[\033[0m\]'
+black='\e[30m'
+red='\e[31m'
+green='\e[32m'
+yellow='\e[33m'
+cyan='\e[36m'
+white='\e[37m'
+magenta='\e[95m'
+grey='\e[37m'
+black='\e[30m'
+reset='\e[0m'
+red_bg="\e[41m"
+lightred_bg="\e[101m"
+green_bg="\e[42m"
+lightgreen_bg="\e[102m"
+blue_bg="\e[44m"
+yellow_bg="\e[43m"
+lightyellow_bg="\e[103m"
+magenta_bg='\e[45m'
+lightgrey_bg="\e[100m"
 
 # tiny git status for use in BashPrompt
 function GitStatus() {
@@ -175,19 +201,19 @@ function GitStatus() {
         if ! git diff-index --quiet HEAD > /dev/null 2>&1; then
             local staged="$(git diff --cached --numstat | wc -l | tr -d ' ')"
             if [[ $staged != 0 ]]; then
-                git_staged_count=" $staged"
+                git_staged_count=" $staged "
             fi
 
             local modified="$(git diff --numstat | wc -l | tr -d ' ')"
             if [[ $modified != 0 ]]; then
-                git_modified_count=" $modified"
+                git_modified_count=" $modified "
             fi
         fi
         local untracked="$(git ls-files --exclude-standard --others | wc -l | tr -d ' ')"
         if [[ $untracked != 0 ]]; then
-            git_untracked_count=" $untracked"
+            git_untracked_count=" $untracked "
         fi
-        echo "[${grey}${current_branch}${green}${git_staged_count}${red}${git_modified_count}${yellow}${git_untracked_count}${reset}] "
+        echo "${blue_bg}${black} ${current_branch} ${reset}${green_bg}${black}${git_staged_count}${lightred_bg}${git_modified_count}${lightyellow_bg}${git_untracked_count}${reset}"
     fi
 }
 
@@ -197,14 +223,14 @@ function BashPrompt() {
     local time=$(date +"%T")
 
     if [[ "$last_status" == "0" ]]; then
-        local time_color=$green
+        local time_color=$green_bg$black
     else
-        local time_color=$red
+        local time_color=$red_bg$black
     fi
 
     local git_section="$(GitStatus)"
 
-    echo "${time_color}\t${reset} ${git_section}\u@\h ${cyan}${PWD/$HOME/~}${reset} "
+    echo "${time_color} \t ${reset}${git_section} \u@\h ${cyan}${PWD/$HOME/~}${reset} "
 }
 
 # the hook which updates the prompt whenever we run a command
