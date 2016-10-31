@@ -177,10 +177,13 @@ fi
 black='\e[30m'
 red='\e[31m'
 green='\e[32m'
+lightgreen='\e[92m'
 yellow='\e[33m'
 cyan='\e[36m'
+lightcyan='\e[96m'
 white='\e[37m'
-magenta='\e[95m'
+magenta='\e[35m'
+lightmagenta='\e[95m'
 grey='\e[37m'
 black='\e[30m'
 reset='\e[0m'
@@ -230,7 +233,7 @@ function BashPrompt() {
 
     local git_section="$(GitStatus)"
 
-    echo "${time_color} \t ${reset}${git_section} \u@\h ${cyan}${PWD/$HOME/~}${reset} "
+    echo "${time_color} \t ${reset}${git_section} ${cyan}\u@${cyan}\h ${white}${PWD/$HOME/~}${reset} "
 }
 
 # the hook which updates the prompt whenever we run a command
