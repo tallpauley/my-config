@@ -1,6 +1,6 @@
 {
-	"color_scheme": "Packages/User/SublimeLinter/Flatland Dark (SL).tmTheme",
-	"font_size": 12,
+	"color_scheme": "Packages/User/SublimeLinter/1337 (SL).tmTheme",
+	"font_size": 14,
 	"ignored_packages":
 	[
 	],
@@ -10,7 +10,7 @@
 	[
 		79
 	],
-	"theme": "Flatland Dark.sublime-theme",
+	"theme": "Boxy Tomorrow.sublime-theme",
 	"vintage_ctrl_keys": true,
 	"vintage_start_in_command_mode": true
 }
