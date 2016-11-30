@@ -154,7 +154,7 @@ kl() { kubectl logs $(get_pod $1); }
 klp() { kubectl logs -p $(get_pod $1); }
 klf() { kubectl logs -f $(get_pod $1); }
 kdp() { kubectl describe pod $(get_pod $1); }
-kssh() { kubectl exec -it $(get_pod $1) bash; }
+kssh() { kubectl exec -it $(get_pod $1) sh; }
 
 alias kwp="watch -d kubectl get pods"
 kwd() { watch -d kubectl describe pod $(get_pod $1); }
