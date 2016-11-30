@@ -164,8 +164,8 @@ alias kd="kubectl describe"
 
 # include brew completion files
 # works w/ `brew install git-completion`
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
+if brew -v > /dev/null 2>&1 && [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
 fi
 
 # all other completion files
