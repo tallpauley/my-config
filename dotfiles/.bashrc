@@ -1,6 +1,8 @@
 # general
 # turn off ctrl-d sending EOF (thus quitting terminal)
 set -o ignoreeof
+# allow Ctrl+s
+stty -ixon
 
 # history
 export HISTSIZE=10000
