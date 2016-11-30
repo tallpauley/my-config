@@ -176,28 +176,28 @@ if [ -d ~/.bash_completion.d ]; then
 fi
 
 # color codes (for prompt)
-black='\e[30m'
-red='\e[31m'
-green='\e[32m'
-lightgreen='\e[92m'
-yellow='\e[33m'
-cyan='\e[36m'
-lightcyan='\e[96m'
-white='\e[37m'
-magenta='\e[35m'
-lightmagenta='\e[95m'
-grey='\e[37m'
-black='\e[30m'
-reset='\e[0m'
-red_bg="\e[41m"
-lightred_bg="\e[101m"
-green_bg="\e[42m"
-lightgreen_bg="\e[102m"
-blue_bg="\e[44m"
-yellow_bg="\e[43m"
-lightyellow_bg="\e[103m"
-magenta_bg='\e[45m'
-lightgrey_bg="\e[100m"
+black='\[\e[30m\]'
+red='\[\e[31m\]'
+green='\[\e[32m\]'
+lightgreen='\[\e[92m\]'
+yellow='\[\e[33m\]'
+cyan='\[\e[36m\]'
+lightcyan='\[\e[96m\]'
+white='\[\e[37m\]'
+magenta='\[\e[35m\]'
+lightmagenta='\[\e[95m\]'
+grey='\[\e[37m\]'
+black='\[\e[30m\]'
+reset='\[\e[0m\]'
+red_bg="\[\e[41m\]"
+lightred_bg="\[\e[101m\]"
+green_bg="\[\e[42m\]"
+lightgreen_bg="\[\e[102m\]"
+blue_bg="\[\e[44m\]"
+yellow_bg="\[\e[43m\]"
+lightyellow_bg="\[\e[103m\]"
+magenta_bg='\[\e[45m\]'
+lightgrey_bg="\[\e[100m\]"
 
 # tiny git status for use in BashPrompt
 function GitStatus() {
