@@ -1,0 +1,10 @@
+{
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.welcome.enabled": false,
+    "vim.disableAnnoyingNeovimMessage": true,
+    "workbench.colorTheme": "Brogrammer",
+    "editor.fontSize": 13,
+    "editor.fontFamily": "Hack, Monaco, 'Courier New', monospace",
+    "vim.leader": ",",
+}
