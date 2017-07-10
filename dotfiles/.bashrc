@@ -1,8 +1,12 @@
 # general
 # turn off ctrl-d sending EOF (thus quitting terminal)
 set -o ignoreeof
+
 # allow Ctrl+s
 stty -ixon
+
+# editor
+export EDITOR=vim
 
 # history
 export HISTSIZE=10000
@@ -11,11 +15,6 @@ export HISTCONTROL="ignoreboth"
 
 # file to store paths in for switcher
 dirsfile=~/.dirs
-
-# work-specific rc file
-if [ -f ~/.bashrc_private ]; then
-    source ~/.bashrc_private
-fi
 
 # fancy directory switcher
 d() {
@@ -43,7 +42,7 @@ d() {
     if [[ "$1" == '-g' ]]; then
     	cd $(git rev-parse --show-toplevel)
         ls
-    	return 
+    	return
     fi
 
     # switches to a directory and adds to $dirsfile if param is path
@@ -72,7 +71,6 @@ alias grep="grep --color=auto"
 
 # assorted aliases
 alias erc="vi ~/.bashrc && . ~/.bashrc"
-alias sb="subl"
 alias h="history | grep"
 
 # ls aliases
@@ -101,10 +99,11 @@ function add_commit() {
     git commit -m "$2";
 }
 
-# sublime aliases
-alias s="subl"
+# atom aliases
+alias c="code"
 
 # docker aliases
+alias dc="docker-compose"
 alias dlc="docker ps -lq"
 alias dp="docker ps"
 alias dpa="docker ps -a"
@@ -118,6 +117,7 @@ alias drf="docker rm -f"
 # git aliases
 alias gc="git commit -m"
 alias gac="add_commit"
+alias gca="git commit --amend"
 alias gcam="git commit -am"
 alias gch="git checkout"
 alias gp="git push"
@@ -218,7 +218,7 @@ function GitStatus() {
         if [[ $untracked != 0 ]]; then
             git_untracked_count=" $untracked "
         fi
-        echo "${blue_bg}${black} ${current_branch} ${reset}${green_bg}${black}${git_staged_count}${lightred_bg}${git_modified_count}${lightyellow_bg}${git_untracked_count}${reset}"
+        echo "${blue_bg}${black} ${current_branch} ${reset}${green_bg}${black}${git_staged_count}${red_bg}${git_modified_count}${yellow_bg}${git_untracked_count}${reset}"
     fi
 }
 
@@ -240,3 +240,21 @@ function BashPrompt() {
 
 # the hook which updates the prompt whenever we run a command
 PROMPT_COMMAND='PS1=$(BashPrompt)'
+
+alias foo='echo I work with tmux, too'
+
+screenrc() {
+    local SCREENDIR=/tmp/cmpauleyscreenserver
+    if ! [ -d $SCREENDIR ]; then
+        rm -rf $SCREENDIR
+        mkdir -p $SCREENDIR
+    fi
+    rm -rf $SCREENDIR/.sshrc.d
+    cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $SCREENDIR
+    SSHHOME=$SCREENDIR /usr/bin/screen -c $SCREENDIR/.sshrc.d/.screenrc -s $SCREENDIR/bashsshrc $@
+}
+
+# work-specific rc file
+if [ -f ~/.bashrc_private ]; then
+    source ~/.bashrc_private
+fi
