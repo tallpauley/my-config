@@ -7,4 +7,9 @@
     "editor.fontSize": 13,
     "editor.fontFamily": "Hack, Monaco, 'Courier New', monospace",
     "vim.leader": ",",
+    "terminal.external.osxExec": "iTerm.app",
+    "workbench.activityBar.visible": false,
+    "workbench.editor.showTabs": false,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": false,
 }
