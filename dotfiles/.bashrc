@@ -2,6 +2,9 @@
 # turn off ctrl-d sending EOF (thus quitting terminal)
 set -o ignoreeof
 
+# extglob (for !(*stuff) syntax)
+shopt -s extglob
+
 # allow Ctrl+s
 stty -ixon
 
@@ -64,6 +67,8 @@ d() {
   cd $dir
   ls
 }
+
+alias vi="code"
 
 # shortcut for returning to git root
 alias dg="d -g"
@@ -151,6 +156,7 @@ get_pod() {
   fi
   echo $1
 }
+alias k="kubectl"
 alias kp="kubectl get pods | sed '1d' | nl -w 2 "
 
 alias kubectl_sys="kubectl --namespace='kube-system'"
