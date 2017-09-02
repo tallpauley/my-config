@@ -1,13 +1,17 @@
 Borke.puppet
 EditorConfig.EditorConfig
+HookyQR.beautify
 MattiasPernhult.vscode-todo
 PeterJausovec.vscode-docker
+bierner.markdown-preview-github-styles
 donjayamanne.githistory
 donjayamanne.python
 formulahendry.code-runner
 gerane.Theme-Brogrammer
 jebbs.plantuml
+lukehoban.Go
 msjsdiag.debugger-for-chrome
 robertohuertasm.vscode-icons
 vscodevim.vim
 waderyan.gitblame
+wholroyd.HCL
