@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.iconTheme": "vscode-icons",
     "workbench.welcome.enabled": false,
     "vim.disableAnnoyingNeovimMessage": true,
@@ -11,5 +11,6 @@
     "workbench.activityBar.visible": false,
     "workbench.editor.showTabs": false,
     "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": false,
+    "editor.renderControlCharacters": true,
+    "vscodeWorkspaceSwitcher.paths": ["/Users/cmpauley/vscode_workspaces"]
 }

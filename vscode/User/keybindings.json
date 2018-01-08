@@ -3,5 +3,10 @@
     {
         "key": "cmd+m",
         "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
     }
 ]

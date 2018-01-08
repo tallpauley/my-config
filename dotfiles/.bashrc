@@ -68,7 +68,7 @@ d() {
   ls
 }
 
-alias vi="code"
+alias vi="code -a "
 
 # shortcut for returning to git root
 alias dg="d -g"
@@ -109,7 +109,7 @@ function add_commit() {
 }
 
 # atom aliases
-alias c="code"
+alias c="code -a "
 
 # docker aliases
 alias dc="docker-compose"
