@@ -1,4 +1,3 @@
-Borke.puppet
 EditorConfig.EditorConfig
 HookyQR.beautify
 MattiasPernhult.vscode-todo
@@ -10,6 +9,7 @@ donjayamanne.githistory
 formulahendry.code-runner
 gerane.Theme-Brogrammer
 jebbs.plantuml
+jpogran.puppet-vscode
 lukehoban.Go
 ms-python.python
 ms-vscode.azure-account
