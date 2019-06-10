@@ -52,4 +52,3 @@ vscode-extensions:
 .PHONY: vscode-extensions-codify
 vscode-extensions-codify:
 	code --list-extensions > vscode/extensions.txt
-
