@@ -1,0 +1,16 @@
+export TERM='xterm-256color'
+
+# vscode
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# user directory binaries
+export PATH="~/bin:$PATH"
+
+# golang
+export PATH="$PATH:~/code/go/bin"
+export GOPATH=~/code/go
+
+# private profile file
+if [ -f ~/.bash_profile_private ]; then
+  source ~/.bash_profile_private
+fi
