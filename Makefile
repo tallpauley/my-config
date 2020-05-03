@@ -1,6 +1,4 @@
 SHELL = /bin/bash
-blank =
-space = $(blank) $(blank)
 
 ALL: help
 
@@ -27,18 +25,18 @@ install: dotfiles ssh-config vscode-symlinks vscode-extensions
 .PHONY: dotfiles
 dotfiles:
 	for f in dotfiles/*; do \
-  		ln -s $$PWD/$$f ~/.$$(basename $$f); \
+  		ln -sf $$PWD/$$f ~/.$$(basename $$f); \
 	done
 
 .PHONY: ssh-config
 ssh-config:
-	ln -s $$PWD/ssh_config ~/.ssh/config
+	ln -sf $$PWD/ssh_config ~/.ssh/config
 
 # symlink VSCode config
 .PHONY: vscode-symlinks
 vscode-symlinks:
 	for f in vscode/User/*; do \
-		ln -s $$PWD/$$f $(HOME)/Library/Application' 'Support/Code/User/$$(basename $$f); \
+		ln -sf $$PWD/$$f $(HOME)/Library/Application' 'Support/Code/User/$$(basename $$f); \
 	done
 
 # install VSCode extensions from extensions.txt
