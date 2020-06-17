@@ -1,5 +1,11 @@
 export TERM='xterm-256color'
 
+# brew python binaries instead of system ones
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+# vscode
+export PATH="$PATH:/usr/local/bin"
+
 # vscode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 

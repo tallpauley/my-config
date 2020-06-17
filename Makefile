@@ -16,6 +16,8 @@ help:
 	@echo "   Install vscode extensions from extensions.txt"
 	@echo make vscode-extensions-codify
 	@echo "   Write vscode extensions to extensions.txt"
+	@echo make install-python
+	@echo "   Install latest Python with Homebrew"
 
 
 .PHONY: install
@@ -50,3 +52,9 @@ vscode-extensions:
 .PHONY: vscode-extensions-codify
 vscode-extensions-codify:
 	code --list-extensions > vscode/extensions.txt
+
+# Get latest Python (requires brew)
+.PHONY: install-python
+install-python:
+	brew install python3
+	brew postinstall python3
