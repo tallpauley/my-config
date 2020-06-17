@@ -4,15 +4,16 @@
     "workbench.welcome.enabled": false,
     "vim.disableAnnoyingNeovimMessage": true,
     "workbench.colorTheme": "Brogrammer",
-    "editor.fontFamily": "Hack, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "'Calling Code', Monaco, 'Courier New', monospace",
     "vim.leader": ",",
     "terminal.external.osxExec": "iTerm.app",
     "workbench.activityBar.visible": false,
     "workbench.editor.showTabs": false,
-    "editor.renderWhitespace": "all",
+    "editor.renderWhitespace": "none",
     "editor.renderControlCharacters": true,
     "vscodeWorkspaceSwitcher.paths": [
         "/Users/cmpauley/vscode_workspaces"
     ],
-    "editor.fontSize": 11
+    "editor.fontSize": 12,
+    "breadcrumbs.enabled": true
 }
