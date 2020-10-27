@@ -68,6 +68,15 @@ d() {
   ls
 }
 
+function tf() {
+  echo $1
+  if [ -z $1 ]; then 
+    cd ~/Design/Typefaces
+  else
+    cd ~/Design/Typefaces/*${1}*/typeface
+  fi
+}
+
 alias vi="code -a "
 
 # shortcut for returning to git root
@@ -101,6 +110,11 @@ alias tma='tmux attach -t'
 
 # googler
 alias g="googler -n 3"
+
+# imagemagick
+function contrast() {
+  convert -brightness-contrast -40x80 -modulate 100,0 -trim +repage $1 ${1%.*}_contrast.${1##*.};
+}
 
 # git alias helpers
 function add_commit() {
