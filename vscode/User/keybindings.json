@@ -8,5 +8,13 @@
         "key": "ctrl+n",
         "command": "editor.action.addSelectionToNextFindMatch",
         "when": "editorFocus"
+    },
+    {
+        "key": "alt+cmd+n",
+        "command": "workbench.action.quickOpenTerm"
+    },
+    {
+        "key": "alt+cmd+n",
+        "command": "workbench.action.terminal.focusNext"
     }
 ]

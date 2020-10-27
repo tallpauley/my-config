@@ -1,19 +1,29 @@
 {
     "window.zoomLevel": 1,
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "vscode-great-icons",
     "workbench.welcome.enabled": false,
     "vim.disableAnnoyingNeovimMessage": true,
-    "workbench.colorTheme": "Brogrammer",
-    "editor.fontFamily": "'Calling Code', Monaco, 'Courier New', monospace",
+    "workbench.colorTheme": "Plastic",
     "vim.leader": ",",
     "terminal.external.osxExec": "iTerm.app",
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": true,
     "workbench.editor.showTabs": false,
     "editor.renderWhitespace": "none",
     "editor.renderControlCharacters": true,
     "vscodeWorkspaceSwitcher.paths": [
         "/Users/cmpauley/vscode_workspaces"
     ],
-    "editor.fontSize": 12,
-    "breadcrumbs.enabled": true
+    "breadcrumbs.enabled": true,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "default",
+            "filenamePattern": "*.py"
+        }
+    ],
+    "svg.preview.mode": "svg",
+    "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontWeight": "400",
+    "terminal.integrated.fontSize": 13,
+    "workbench.panel.defaultLocation": "right",
+    "editor.minimap.enabled": false
 }
