@@ -73,7 +73,7 @@ function tf() {
   if [ -z $1 ]; then 
     cd ~/Design/Typefaces
   else
-    cd ~/Design/Typefaces/*${1}*/typeface
+    cd ~/Design/Typefaces/*pauley${1}*/typeface
   fi
 }
 
